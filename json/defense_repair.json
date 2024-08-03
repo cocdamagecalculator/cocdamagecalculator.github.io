@@ -1,0 +1,14 @@
+{
+  "defense_repair": {
+    "builders_hut": {
+      "repair": [
+        32,
+        40,
+        48,
+        54,
+        60
+      ],
+      "rage_tower_modify": 60
+    }
+  }
+}
