@@ -1,0 +1,13 @@
+@media only screen and (max-device-width: 768px) {
+    .offense {
+        width: auto;
+    }
+
+    .offense-range input {
+        width: auto;
+    }
+
+    .donate-count input {
+        width: 25%;
+    }
+}

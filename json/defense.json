@@ -1,6 +1,7 @@
 {
   "defense": {
     "cannon": {
+      "name": "Cannon",
       "hp": [
         420,
         470,
@@ -26,6 +27,7 @@
       ]
     },
     "archer_tower": {
+      "name": "Archer Tower",
       "hp": [
         380,
         420,
@@ -51,6 +53,7 @@
       ]
     },
     "mortar": {
+      "name": "Mortar",
       "hp": [
         400,
         450,
@@ -71,6 +74,7 @@
       ]
     },
     "air_defense": {
+      "name": "Air Defense",
       "hp": [
         800,
         850,
@@ -89,6 +93,7 @@
       ]
     },
     "wizard_tower": {
+      "name": "Wizard Tower",
       "hp": [
         620,
         650,
@@ -109,6 +114,7 @@
       ]
     },
     "air_sweeper": {
+      "name": "Air Sweeper",
       "hp": [
         750,
         800,
@@ -120,6 +126,7 @@
       ]
     },
     "hidden_tesla": {
+      "name": "Hidden Tesla",
       "hp": [
         600,
         630,
@@ -139,6 +146,7 @@
       ]
     },
     "bomb_tower": {
+      "name": "Bomb Tower",
       "hp": [
         650,
         700,
@@ -154,6 +162,7 @@
       ]
     },
     "xbow": {
+      "name": "X-Bow",
       "hp": [
         1500,
         1900,
@@ -169,6 +178,7 @@
       ]
     },
     "inferno_tower": {
+      "name": "Inferno Tower",
       "hp": [
         1500,
         1800,
@@ -183,6 +193,7 @@
       ]
     },
     "eagle_artillery": {
+      "name": "Eagle Artillery",
       "hp": [
         4000,
         4400,
@@ -194,6 +205,7 @@
       ]
     },
     "scattershot": {
+      "name": "Scattershot",
       "hp": [
         3600,
         4200,
@@ -203,6 +215,7 @@
       ]
     },
     "builders_hut": {
+      "name": "Builder's Hut",
       "hp": [
         250,
         1000,
@@ -213,6 +226,7 @@
       ]
     },
     "spell_tower": {
+      "name": "Spell Tower",
       "hp": [
         2500,
         2800,
@@ -220,6 +234,7 @@
       ]
     },
     "monolith": {
+      "name": "Monolith",
       "hp": [
         4747,
         5050,
@@ -227,18 +242,21 @@
       ]
     },
     "ricochet_cannon": {
+      "name": "Ricochet Cannon",
       "hp": [
         5400,
         5700
       ]
     },
     "multiarcher_tower": {
+      "name": "Multi-Archer Tower",
       "hp": [
         5000,
         5200
       ]
     },
     "townhall": {
+      "name": "Townhall",
       "hp": [
         450,
         1600,
@@ -259,6 +277,7 @@
       ]
     },
     "grand_warden_altar": {
+      "name": "Grand Warden Altar",
       "hp": [
         850,
         868,
@@ -333,6 +352,7 @@
       ]
     },
     "archer_queen": {
+      "name": "Archer Queen",
       "hp": [
         580,
         592,
@@ -432,6 +452,7 @@
       ]
     },
     "royal_champion": {
+      "name": "Royal Champion",
       "hp": [
         2508,
         2550,

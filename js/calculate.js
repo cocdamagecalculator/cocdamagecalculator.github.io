@@ -1,3 +1,3 @@
-
-//let myName = localStorage.getItem("name");
-//document.getElementById("demo").innerHTML = myName;
+function calculate(element) {
+    updateOffense(element);
+}

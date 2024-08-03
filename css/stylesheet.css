@@ -1,0 +1,74 @@
+nav {
+    font-size: 1.2em;
+    text-align: center;
+}
+.main {
+    width: 90%;
+}
+
+.form{
+
+    position: relative;
+}
+
+.form .fa-search{
+
+    position: absolute;
+    top:20px;
+    left: 20px;
+    color: #9ca3af;
+
+}
+
+.form-input{
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+
+.form-input:focus{
+
+    box-shadow: none;
+    border:none;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container img {
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 7px;
+}
+
+.not-maxed {
+    background: hsl(0, 0%, 35%);
+    color: hsl(0, 0%, 100%);
+}
+
+.maxed {
+    background: hsl(45, 100%, 50%);
+    color: hsl(0, 0%, 0%);
+}
+
+.level-number {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.offense {
+    width: 230px;
+}
+
+.offense-range input {
+    width: 100%;
+}
