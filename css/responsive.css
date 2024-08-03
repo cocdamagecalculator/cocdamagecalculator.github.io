@@ -10,4 +10,8 @@
     .donate-count input {
         width: 25%;
     }
+
+    #earthquakeOrder {
+        width: 100%;
+    }
 }

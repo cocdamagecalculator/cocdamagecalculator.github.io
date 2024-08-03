@@ -24,7 +24,8 @@
         2000,
         2150,
         2250
-      ]
+      ],
+      "immune": []
     },
     "archer_tower": {
       "name": "Archer Tower",
@@ -50,7 +51,8 @@
         1600,
         1700,
         1800
-      ]
+      ],
+      "immune": []
     },
     "mortar": {
       "name": "Mortar",
@@ -71,7 +73,8 @@
         1950,
         2150,
         2300
-      ]
+      ],
+      "immune": []
     },
     "air_defense": {
       "name": "Air Defense",
@@ -90,7 +93,8 @@
         1650,
         1750,
         1850
-      ]
+      ],
+      "immune": []
     },
     "wizard_tower": {
       "name": "Wizard Tower",
@@ -111,7 +115,8 @@
         2800,
         3000,
         3150
-      ]
+      ],
+      "immune": []
     },
     "air_sweeper": {
       "name": "Air Sweeper",
@@ -123,7 +128,8 @@
         950,
         1000,
         1050
-      ]
+      ],
+      "immune": []
     },
     "hidden_tesla": {
       "name": "Hidden Tesla",
@@ -143,7 +149,8 @@
         1350,
         1450,
         1550
-      ]
+      ],
+      "immune": []
     },
     "bomb_tower": {
       "name": "Bomb Tower",
@@ -159,7 +166,8 @@
         2300,
         2500,
         2700
-      ]
+      ],
+      "immune": []
     },
     "xbow": {
       "name": "X-Bow",
@@ -175,7 +183,8 @@
         4200,
         4400,
         4600
-      ]
+      ],
+      "immune": []
     },
     "inferno_tower": {
       "name": "Inferno Tower",
@@ -190,7 +199,8 @@
         3700,
         4000,
         4400
-      ]
+      ],
+      "immune": []
     },
     "eagle_artillery": {
       "name": "Eagle Artillery",
@@ -202,7 +212,8 @@
         5600,
         5900,
         6200
-      ]
+      ],
+      "immune": []
     },
     "scattershot": {
       "name": "Scattershot",
@@ -223,7 +234,8 @@
         1600,
         1800,
         1900
-      ]
+      ],
+      "immune": []
     },
     "spell_tower": {
       "name": "Spell Tower",
@@ -231,7 +243,8 @@
         2500,
         2800,
         3100
-      ]
+      ],
+      "immune": []
     },
     "monolith": {
       "name": "Monolith",
@@ -239,21 +252,24 @@
         4747,
         5050,
         5353
-      ]
+      ],
+      "immune": []
     },
     "ricochet_cannon": {
       "name": "Ricochet Cannon",
       "hp": [
         5400,
         5700
-      ]
+      ],
+      "immune": []
     },
     "multiarcher_tower": {
       "name": "Multi-Archer Tower",
       "hp": [
         5000,
         5200
-      ]
+      ],
+      "immune": []
     },
     "townhall": {
       "name": "Townhall",
@@ -274,6 +290,29 @@
         8900,
         9600,
         10000
+      ],
+      "immune": [
+        "lightning_spell"
+      ]
+    },
+    "clan_castle": {
+      "name": "Clan Castle",
+      "hp": [
+        1000,
+        1400,
+        2000,
+        2600,
+        3000,
+        3400,
+        4000,
+        4400,
+        4800,
+        5200,
+        5400,
+        5600
+      ],
+      "immune": [
+        "lightning_spell"
       ]
     },
     "grand_warden_altar": {
@@ -349,7 +388,8 @@
         2380,
         2397,
         2414
-      ]
+      ],
+      "immune": []
     },
     "archer_queen": {
       "name": "Archer Queen",
@@ -449,6 +489,10 @@
         3168,
         3192,
         3216
+      ],
+      "immune": [
+        "earthquake_spell",
+        "earthquake_boots"
       ]
     },
     "royal_champion": {
@@ -499,6 +543,10 @@
         3987,
         4012,
         4038
+      ],
+      "immune": [
+        "earthquake_spell",
+        "earthquake_boots"
       ]
     }
   }
