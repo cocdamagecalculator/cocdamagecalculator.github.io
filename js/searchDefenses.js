@@ -5,7 +5,7 @@ function searchDefenses(element) {
     defensesDiv.forEach((defenseDiv) => {
         let defenseID = defenseDiv.getAttribute("data-title");
 
-        if (defenseJSON["defense"][defenseID]["name"].toLowerCase().includes(searchString)) {
+        if (getDefense(defenseID)["name"].toLowerCase().includes(searchString)) {
             if (defenseDiv.classList.contains("d-none")) {
                 defenseDiv.classList.remove("d-none");
             }

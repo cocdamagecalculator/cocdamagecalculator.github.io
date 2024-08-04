@@ -1,3 +1,5 @@
+const devMode = false;
+
 const defensesSection = document.getElementById("defenses");
 const offensesSection = document.getElementById("offenses");
 const donatedLightningSpellCountDiv = document.getElementById("donateCount");
@@ -25,10 +27,13 @@ fetch("/json/defense.json")
   })
   .then(data => {   
     defenseJSON = data;
-    Object.keys(defenseJSON["defense"]).forEach(loadDefense);
+    if (!devMode) {
+      Object.keys(defenseJSON["defense"]).forEach(loadDefense);
+    }    
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
+    window.location.href = "/html/error.html";
   });
 
 let offenseJSON = null;
@@ -46,6 +51,7 @@ fetch("/json/offense.json")
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
+    window.location.href = "/html/error.html";
   });
 
   let otherJSON = null;
@@ -59,9 +65,11 @@ fetch("/json/offense.json")
     .then(data => {   
       otherJSON = data;
       maxSpellCount = otherJSON["max_spell_count"];
+      calculate();
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
+      window.location.href = "/html/error.html";
     });
 
 function loadSpell(spellID) {
@@ -73,7 +81,7 @@ function loadSpell(spellID) {
       let imagePath = "/images/offense/" + spellID + ".webp";
 
       offenseDiv.querySelector(".overlay").classList.add("maxed");
-      offenseDiv.querySelector(".level-number").innerHTML = level;
+      offenseDiv.querySelector(".level-number").textContent = level;
       offenseDiv.querySelector(".image").src = imagePath;
       offenseDiv.querySelector(".range").max = level;
       offenseDiv.querySelector(".range").value = level;
@@ -103,7 +111,7 @@ function loadEquipment(equipmentID) {
       let imagePath = "/images/offense/" + equipmentID + ".webp";
 
       offenseDiv.querySelector(".overlay").classList.add("not-maxed");
-      offenseDiv.querySelector(".level-number").innerHTML = sorteddamageList[0][0];
+      offenseDiv.querySelector(".level-number").textContent = sorteddamageList[0][0];
       offenseDiv.querySelector(".image").src = imagePath;
       offenseDiv.querySelector(".range").max = level;
       offenseDiv.querySelector(".range").value = 0;
@@ -160,7 +168,7 @@ function loadDefense(defenseID) {
 
   // Create the nested structure inside the main container
   const borderDiv = document.createElement('div');
-  borderDiv.className = 'col-12 border';
+  borderDiv.className = 'col-12 border h-100';
 
   const innerDiv = document.createElement('div');
   innerDiv.className = 'm-3';
@@ -183,18 +191,18 @@ function loadDefense(defenseID) {
 
   const nameSpan = document.createElement('span');
   nameSpan.className = 'name';
-  nameSpan.innerHTML = name + " ";
+  nameSpan.textContent = name + " ";
 
   const levelSpan = document.createElement('span');
   levelSpan.className = 'level';
-  levelSpan.innerHTML = "(Level " + level + ")";
+  levelSpan.textContent = "(Level " + level + ")";
 
   const hpDiv = document.createElement('div');
-  hpDiv.innerHTML = '❤️';
+  hpDiv.textContent = '❤️';
 
   const hpSpan = document.createElement('span');
   hpSpan.className = 'hp h5';
-  hpSpan.innerHTML = hp;
+  hpSpan.textContent = hp;
 
   const rangeInput = document.createElement('input');
   rangeInput.setAttribute('type', 'range');
@@ -211,22 +219,32 @@ function loadDefense(defenseID) {
   equipmentDiv.className = 'equipment-div my-3 d-none';
 
   const equipmentTitle = document.createElement('h5');
-  equipmentTitle.innerHTML = "Heroes Equipment used:";
+  equipmentTitle.textContent = "Heroes Equipment used:";
 
   const equipmentList = document.createElement('div');
   equipmentList.className = 'equipment-list d-flex justify-content-center align-items-center flex-wrap';
 
+  const statusDiv = document.createElement('div');
+  statusDiv.className = 'status-div d-flex align-items-center my-3 d-none';
+
+  const statusImg = document.createElement('img');
+  statusImg.className = 'status-img me-4';
+  statusImg.setAttribute('height', '150');
+
+  const statusText = document.createElement('div');
+  statusText.className = 'status-text fw-bold';
+  
   const spellDiv = document.createElement('div');
-  spellDiv.className = 'my-3';
+  spellDiv.className = 'spell-div my-3';
 
   const spellTitle = document.createElement('h5');
-  spellTitle.innerHTML = "Spell needed:";
+  spellTitle.textContent = "Spell needed:";
 
   const spellList = document.createElement('div');
-  spellList.className = 'd-flex justify-content-center align-items-center';
+  spellList.className = 'spell-main-display d-flex justify-content-center align-items-center';
 
   const buttonDiv = document.createElement('div');
-  buttonDiv.className = 'text-center my-3';
+  buttonDiv.className = 'collapse-btn text-center my-3';
 
   const button = document.createElement('button');
   button.className = 'btn btn-primary';
@@ -238,21 +256,25 @@ function loadDefense(defenseID) {
   button.textContent = 'Show More';
 
   const showMoreDiv = document.createElement('div');
-  showMoreDiv.className = 'collapse';
-  showMoreDiv.id = "showMore" + defenseID;
+  showMoreDiv.className = 'spell-display collapse';
+  showMoreDiv.id = "showMore-" + defenseID;
 
   // Append the created elements to their respective parents
   buttonDiv.appendChild(button);
+
+  equipmentDiv.appendChild(equipmentTitle);
+  equipmentDiv.appendChild(equipmentList);
+
+  statusDiv.appendChild(statusImg);
+  statusDiv.appendChild(statusText);
 
   spellDiv.appendChild(spellTitle);
   spellDiv.appendChild(spellList);
   spellDiv.appendChild(buttonDiv);
   spellDiv.appendChild(showMoreDiv);
 
-  equipmentDiv.appendChild(equipmentTitle);
-  equipmentDiv.appendChild(equipmentList);
-
   resultDiv.appendChild(equipmentDiv);
+  resultDiv.appendChild(statusDiv);
   resultDiv.appendChild(spellDiv);
 
   imgDiv.appendChild(img);

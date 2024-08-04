@@ -112,6 +112,11 @@ nav {
 }
 
 /* Variance & Utilities */
+.immune {
+    background-color: rgb(255, 70, 70);
+    border: 1px solid rgb(150, 0, 0)
+}
+
 .epic-rarity {
     background-color: rgb(191, 0, 255);
     border: 1px solid rgb(68, 0, 116);

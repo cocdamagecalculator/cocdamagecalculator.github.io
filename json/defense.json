@@ -2,6 +2,7 @@
   "defense": {
     "cannon": {
       "name": "Cannon",
+      "type": "building",
       "hp": [
         420,
         470,
@@ -29,6 +30,7 @@
     },
     "archer_tower": {
       "name": "Archer Tower",
+      "type": "building",
       "hp": [
         380,
         420,
@@ -56,6 +58,7 @@
     },
     "mortar": {
       "name": "Mortar",
+      "type": "building",
       "hp": [
         400,
         450,
@@ -78,6 +81,7 @@
     },
     "air_defense": {
       "name": "Air Defense",
+      "type": "building",
       "hp": [
         800,
         850,
@@ -98,6 +102,7 @@
     },
     "wizard_tower": {
       "name": "Wizard Tower",
+      "type": "building",
       "hp": [
         620,
         650,
@@ -120,6 +125,7 @@
     },
     "air_sweeper": {
       "name": "Air Sweeper",
+      "type": "building",
       "hp": [
         750,
         800,
@@ -133,6 +139,7 @@
     },
     "hidden_tesla": {
       "name": "Hidden Tesla",
+      "type": "building",
       "hp": [
         600,
         630,
@@ -154,6 +161,7 @@
     },
     "bomb_tower": {
       "name": "Bomb Tower",
+      "type": "building",
       "hp": [
         650,
         700,
@@ -171,6 +179,7 @@
     },
     "xbow": {
       "name": "X-Bow",
+      "type": "building",
       "hp": [
         1500,
         1900,
@@ -188,6 +197,7 @@
     },
     "inferno_tower": {
       "name": "Inferno Tower",
+      "type": "building",
       "hp": [
         1500,
         1800,
@@ -204,6 +214,7 @@
     },
     "eagle_artillery": {
       "name": "Eagle Artillery",
+      "type": "building",
       "hp": [
         4000,
         4400,
@@ -217,16 +228,19 @@
     },
     "scattershot": {
       "name": "Scattershot",
+      "type": "building",
       "hp": [
         3600,
         4200,
         4800,
         5100,
         5410
-      ]
+      ],
+      "immune": []
     },
     "builders_hut": {
       "name": "Builder's Hut",
+      "type": "building",
       "hp": [
         250,
         1000,
@@ -239,6 +253,7 @@
     },
     "spell_tower": {
       "name": "Spell Tower",
+      "type": "building",
       "hp": [
         2500,
         2800,
@@ -248,6 +263,7 @@
     },
     "monolith": {
       "name": "Monolith",
+      "type": "building",
       "hp": [
         4747,
         5050,
@@ -257,6 +273,7 @@
     },
     "ricochet_cannon": {
       "name": "Ricochet Cannon",
+      "type": "building",
       "hp": [
         5400,
         5700
@@ -265,6 +282,7 @@
     },
     "multiarcher_tower": {
       "name": "Multi-Archer Tower",
+      "type": "building",
       "hp": [
         5000,
         5200
@@ -273,6 +291,7 @@
     },
     "townhall": {
       "name": "Townhall",
+      "type": "building",
       "hp": [
         450,
         1600,
@@ -297,6 +316,7 @@
     },
     "clan_castle": {
       "name": "Clan Castle",
+      "type": "building",
       "hp": [
         1000,
         1400,
@@ -317,6 +337,7 @@
     },
     "grand_warden_altar": {
       "name": "Grand Warden Altar",
+      "type": "building",
       "hp": [
         850,
         868,
@@ -393,6 +414,7 @@
     },
     "archer_queen": {
       "name": "Archer Queen",
+      "type": "hero",
       "hp": [
         580,
         592,
@@ -497,6 +519,7 @@
     },
     "royal_champion": {
       "name": "Royal Champion",
+      "type": "hero",
       "hp": [
         2508,
         2550,
