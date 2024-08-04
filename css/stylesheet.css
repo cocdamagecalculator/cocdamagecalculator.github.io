@@ -1,5 +1,9 @@
 /* Main & Navbar */
-.main {
+main {   
+    background-color: hsl(220, 13%, 91%);
+}
+
+.main-container {
     width: 90%;
 }
 
@@ -111,6 +115,11 @@ nav {
     font-size: 12px;
 }
 
+.rounded-border {
+    border: 1px solid hsl(0, 0%, 90%);
+    border-radius: 20px;
+}
+
 /* Variance & Utilities */
 .immune {
     background-color: rgb(255, 70, 70);
@@ -147,4 +156,21 @@ nav {
     bottom: 30px;
     left: 5px;
     z-index: 1;
+}
+
+/* Icon */
+.fa-solid.fa-moon.fa-2x {
+    color: hsl(210, 2%, 75%);
+}
+
+.fa-solid.fa-moon.fa-2x:hover {
+    color: hsl(0, 0%, 25%);
+}
+
+.fa-solid.fa-sun.fa-2x {
+    color: hsl(210, 2%, 75%);     
+}
+
+.fa-solid.fa-sun.fa-2x:hover {
+    color: hsl(43, 100%, 50%);     
 }

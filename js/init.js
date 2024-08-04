@@ -1,4 +1,5 @@
 const devMode = false;
+let isDarkMode = false;
 
 const defensesSection = document.getElementById("defenses");
 const offensesSection = document.getElementById("offenses");
@@ -33,7 +34,7 @@ fetch("/json/defense.json")
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
-    window.location.href = "/html/error.html";
+    //window.location.href = "/html/error.html";
   });
 
 let offenseJSON = null;
@@ -51,7 +52,7 @@ fetch("/json/offense.json")
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
-    window.location.href = "/html/error.html";
+    //window.location.href = "/html/error.html";
   });
 
   let otherJSON = null;
@@ -69,7 +70,7 @@ fetch("/json/offense.json")
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
-      window.location.href = "/html/error.html";
+      //window.location.href = "/html/error.html";
     });
 
 function loadSpell(spellID) {
@@ -168,7 +169,7 @@ function loadDefense(defenseID) {
 
   // Create the nested structure inside the main container
   const borderDiv = document.createElement('div');
-  borderDiv.className = 'col-12 border h-100';
+  borderDiv.className = 'col-12 h-100 rounded-border shadow bg-white';
 
   const innerDiv = document.createElement('div');
   innerDiv.className = 'm-3';

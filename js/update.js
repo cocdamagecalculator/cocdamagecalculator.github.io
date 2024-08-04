@@ -89,7 +89,7 @@ function updateOffense(element) {
             updateEquipmentUsed();
         } else {
             console.log("ERROR: Div did not contain appropriate type!");
-            window.location.href = "/html/error.html";
+            //window.location.href = "/html/error.html";
         }
 
         let overlayDiv = offenseDiv.querySelector(".overlay");
@@ -116,7 +116,7 @@ function useDonatedLightningSpell(element) {
                 offenseDiv.classList.remove("d-none");
             } else {
                 offenseDiv.classList.add("d-none");
-                
+
                 donatedLightningSpellCount = 0;
                 calculate();
             }
