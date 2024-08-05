@@ -93,7 +93,6 @@ function calculateDefense(defenseDiv, equipmentDamage) {
                 if (donatedZapSpellNeeded > donatedLightningSpellCount) {
                     donatedZapSpellNeeded = donatedLightningSpellCount;
                 }
-                spellCount += donatedZapSpellNeeded;
                 hp -= donatedZapSpellNeeded * donatedZapSpellDamage;
                 
                 spellUsed.add("lightning_spell");
@@ -154,8 +153,6 @@ function calculateDefense(defenseDiv, equipmentDamage) {
                 if (maxEQSpellCount != 1 && spellUsed.size == 1 && spellUsed.has("earthquake_spell")) {
                     break;     
                 }
-            } else if (!isImmune) {
-                break;
             }
 
             switch (maxEQSpellCount) {
