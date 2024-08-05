@@ -37,7 +37,7 @@ function updateDefense(element) {
             levelNumberSpan.classList.remove("maxed-text");
         }
         defenseDiv.querySelector(".image").src = imagePath;
-        defenseDiv.querySelector(".hp").textContent = "❤️ " + getDefense(defenseID)["hp"][level - 1];   
+        defenseDiv.querySelector(".hp").textContent = getDefense(defenseID)["hp"][level - 1];   
     }
     calculateDefense(defenseDiv, getEquipmentDamage());
 }
