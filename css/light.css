@@ -14,3 +14,13 @@ main {
 .card-background {
     background-color: hsl(0, 0%, 100%); 
 }
+
+.text-box {
+    background-color: hsl(215, 14%, 34%);
+    color: hsl(0, 0%, 100%);    
+}
+
+.text-box:focus {
+    background-color: hsl(215, 14%, 34%);
+    color: hsl(0, 0%, 100%);
+}

@@ -28,13 +28,26 @@
     border: none;
 }
 
-.form-input:focus {
-    box-shadow: none;
-    border:none;
-}
-
 #earthquakeOrder {
     width: 50%;
+}
+
+.form-select, .text-box, .count-box {
+    border: none;
+}
+
+.form-select, .count-box  {
+    background-color: hsl(215, 14%, 34%);
+    color: hsl(0, 0%, 100%); 
+}
+
+.text-box::placeholder {
+    color: hsl(0, 0%, 100%);
+}
+
+.count-box:focus {
+    background-color: hsl(215, 14%, 34%);
+    color: hsl(0, 0%, 100%);
 }
 
 /* Image Container */
@@ -114,7 +127,6 @@
 }
 
 .rounded-border {
-
     border-radius: 20px;
 }
 
@@ -137,6 +149,10 @@
 .maxed {
     background: hsl(45, 100%, 50%);
     color: hsl(0, 0%, 0%);
+}
+
+.maxed-text {
+    color: hsl(45, 100%, 50%);
 }
 
 .earthquake-spell-bg {
@@ -197,6 +213,10 @@
 
 .fa-solid.fa-sun.fa-2x:hover {
     color: hsl(43, 100%, 50%);     
+}
+
+.fa-solid.fa-chart-simple {
+    color: hsl(121, 100%, 59%);
 }
 
 /* Range Slider */

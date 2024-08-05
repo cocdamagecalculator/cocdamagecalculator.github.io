@@ -87,7 +87,7 @@ function calculateDefense(defenseDiv, equipmentDamage) {
             }
             
             let donatedZapSpellNeeded = 0;
-            if (hp > 0 && donatedLightningSpellCount > 0 && !immuneList.includes("lightning_spell")) {
+            if (hp > 0 && useDonatedLightning && donatedLightningSpellCount > 0 && !immuneList.includes("lightning_spell")) {
                 donatedZapSpellNeeded = Math.ceil(hp / donatedZapSpellDamage);
 
                 if (donatedZapSpellNeeded > donatedLightningSpellCount) {
@@ -186,7 +186,6 @@ function manageEQOrder(hp, eqSpellDamage, eqBootsDamage, maxEQSpellCount, immune
         for (let eqSpellCount = 1; eqSpellCount <= maxEQSpellCount; eqSpellCount++) {
             hp = calculateEQDamage(hp, eqSpellDamage, eqCount)
             eqCount++;
-            console.log(eqCount);
         }
     } else {
         for (let eqSpellCount = 1; eqSpellCount <= maxEQSpellCount; eqSpellCount++) {

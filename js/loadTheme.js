@@ -3,7 +3,7 @@ const darkStyleSheet = "/css/dark.css";
 
 const themeStyleSheet = document.getElementById("theme");
 let isDarkMode = localStorage.getItem("isDarkMode") === "true";
-console.log(localStorage.getItem("isDarkMode"));
+
 if (isDarkMode === null) {
   isDarkMode = false;
   localStorage.setItem("isDarkMode", isDarkMode);

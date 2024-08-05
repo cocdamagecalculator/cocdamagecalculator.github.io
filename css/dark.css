@@ -19,16 +19,12 @@ main {
     background: hsl(215, 14%, 34%);
 }
 
-.form-input, .form-select {
+.text-box {
     background-color: hsl(215, 28%, 17%);
     color: hsl(0, 0%, 100%);    
 }
 
-.form-input::placeholder {
-    color: hsl(0, 0%, 100%);
-}
-
-.form-input:focus {
+.text-box:focus {
     background-color: hsl(215, 28%, 17%);
     color: hsl(0, 0%, 100%);
 }

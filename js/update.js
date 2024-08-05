@@ -9,8 +9,10 @@ function updateDefense(element) {
     } while (defenseDiv != null);
 
     if (defenseDiv) {
-        let level = element.value;
         let defenseID = defenseDiv.getAttribute("data-title");
+        let level = element.value;
+        const key = simpleCalculatorKey + defenseID;
+        localStorage.setItem(key, level);      
         let imagePath;
         switch (defenseID) {
             case "grand_warden_altar":
@@ -26,9 +28,16 @@ function updateDefense(element) {
             imagePath = "/images/defense/" + defenseID + "/" + level + ".webp";
         }
 
-        defenseDiv.querySelector(".level").textContent = "(Level " + level + ")";
+        const levelNumberSpan = defenseDiv.querySelector(".level");
+        const maxLevel = getDefense(defenseID)["hp"].length;
+        levelNumberSpan.textContent = level;
+        if (level == maxLevel) {
+            levelNumberSpan.classList.add("maxed-text");
+        } else {
+            levelNumberSpan.classList.remove("maxed-text");
+        }
         defenseDiv.querySelector(".image").src = imagePath;
-        defenseDiv.querySelector(".hp").textContent = getDefense(defenseID)["hp"][level - 1];   
+        defenseDiv.querySelector(".hp").textContent = "❤️ " + getDefense(defenseID)["hp"][level - 1];   
     }
     calculateDefense(defenseDiv, getEquipmentDamage());
 }
@@ -52,47 +61,39 @@ function updateOffense(element) {
             maxLevel = getSpell(offenseID)["damage"].length;
             levelNumber = level;
 
+            let key;
             switch(offenseID) {
             case "lightning_spell":
                 if (offenseDiv.getAttribute("data-donated") === "true") {
-                    donatedLightningSpellLevel = levelNumber;                    
+                    donatedLightningSpellLevel = levelNumber;
+                    key = simpleCalculatorKey + offenseID + "_donated";              
                 } else {
                     lightningSpellLevel = levelNumber;
+                    key = simpleCalculatorKey + offenseID;
                 }         
                 break;
             case "earthquake_spell":
                 earthquakeSpellLevel = levelNumber;
+                key = simpleCalculatorKey + offenseID;
                 break;
             }
+            localStorage.setItem(key, level);
         } else if (offenseDiv.classList.contains("equipment")) {
             const sorteddamageList = getEquipmentSortedDamageArray(offenseID);
-            maxLevel = sorteddamageList.length;
-            levelNumber = sorteddamageList[level - 1][0];
+            maxLevel = sorteddamageList.length - 1;
+            levelNumber = sorteddamageList[level][0];
 
-            switch(offenseID) {
-                case "earthquake_boots":
-                    earthquakeBootsLevel = levelNumber;
-                    break;
-                case "spiky_ball":
-                    spikyBallLevel = levelNumber;
-                    break;
-                case "giant_arrow":
-                    giantArrowLevel = levelNumber;
-                    break;
-                case "fireball":
-                    fireballLevel = levelNumber;
-                    break;
-                case "seeking_shield":
-                    shieldLevel = levelNumber;
-                    break;
-            }
+            const key = simpleCalculatorKey + offenseID;
+            localStorage.setItem(key, level);
+
+            updateEquipment(offenseID, level);
             updateEquipmentUsed();
         } else {
             console.log("ERROR: Div did not contain appropriate type!");
             //window.location.href = "/html/error.html";
         }
 
-        let overlayDiv = offenseDiv.querySelector(".overlay");
+        const overlayDiv = offenseDiv.querySelector(".overlay");
         if (level == maxLevel) {            
             overlayDiv.classList.remove("not-maxed");
             overlayDiv.classList.add("maxed");
@@ -105,23 +106,52 @@ function updateOffense(element) {
     calculate();
 }
 
+function updateEquipment(offenseID, level) {
+    const sorteddamageList = getEquipmentSortedDamageArray(offenseID);
+    levelNumber = sorteddamageList[level][0];
+
+    switch(offenseID) {
+        case "earthquake_boots":
+            earthquakeBootsLevel = levelNumber;
+            break;
+        case "spiky_ball":
+            spikyBallLevel = levelNumber;
+            break;
+        case "giant_arrow":
+            giantArrowLevel = levelNumber;
+            break;
+        case "fireball":
+            fireballLevel = levelNumber;
+            break;
+        case "seeking_shield":
+            shieldLevel = levelNumber;
+            break;
+    }
+}
+
 function useDonatedLightningSpell(element) {
+    useDonatedLightning = element.checked;
+    localStorage.setItem(useDonatedZapSpellKey, useDonatedLightning);
+
+    toggleUseDonatedLightningSpell(element);
+    calculate();  
+}
+
+function toggleUseDonatedLightningSpell() {
     offenseDivs = offensesSection.querySelectorAll(".offense");
 
     offenseDivs.forEach((offenseDiv) => {
-        let spellID = offenseDiv.getAttribute("data-title");
+        const spellID = offenseDiv.getAttribute("data-title");
         if (spellID === "lightning_spell") {
-          if (offenseDiv.getAttribute("data-donated") === "true") {
-            if (element.checked) {
-                offenseDiv.classList.remove("d-none");
-            } else {
-                offenseDiv.classList.add("d-none");
-
-                donatedLightningSpellCount = 0;
-                calculate();
+            if (offenseDiv.getAttribute("data-donated") === "true") {
+                if (useDonatedLightning) {
+                    offenseDiv.classList.remove("d-none");                   
+                } else {
+                    offenseDiv.classList.add("d-none");
+                }
+                
+                return;
             }
-            return;
-          }
         }
     });
 }
@@ -129,7 +159,7 @@ function useDonatedLightningSpell(element) {
 function updateDonatedCount(element) {
     const warningDiv = document.getElementById("input-warning");
     const inputNumber = Number.parseInt(element.value);
-    console.log(inputNumber);
+
     if (Number.isNaN(inputNumber)) {
         warningDiv.classList.remove("d-none");
     } else {
@@ -138,6 +168,7 @@ function updateDonatedCount(element) {
         } else {
             donatedLightningSpellCount = inputNumber;
 
+            localStorage.setItem(donatedZapSpellCountKey, donatedLightningSpellCount);
             warningDiv.classList.add("d-none");
             calculate();
         }       
@@ -146,6 +177,7 @@ function updateDonatedCount(element) {
 
 function updateEarthquakeOrder(element) {
     earthquakeOrder = element.value;
+    localStorage.setItem(earthquakeOrderKey, earthquakeOrder);
     calculate();
 }
 

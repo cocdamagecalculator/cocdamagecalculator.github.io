@@ -1,4 +1,8 @@
 const devMode = false;
+const simpleCalculatorKey = "simple_";
+const donatedZapSpellCountKey = "simple_lightningSpellCount_donated";
+const useDonatedZapSpellKey = "simple_useDonatedLightningSpell";
+const earthquakeOrderKey = "simple_earthquakeOrder";
 
 const defensesSection = document.getElementById("defenses");
 const offensesSection = document.getElementById("offenses");
@@ -8,93 +12,96 @@ const earthquakeOrderDiv = document.getElementById("earthquakeOrder");
 let maxSpellCount;
 let lightningSpellLevel;
 let donatedLightningSpellLevel;
-let donatedLightningSpellCount = 0;
+let donatedLightningSpellCount = Number.parseInt(localStorage.getItem(donatedZapSpellCountKey)); 
+if (Number.isNaN(donatedLightningSpellCount)) {
+  donatedLightningSpellCount = 0;
+  localStorage.setItem(donatedZapSpellCountKey, donatedLightningSpellCount);
+}
 let earthquakeSpellLevel;
 let earthquakeBootsLevel = "0";
 let spikyBallLevel = "0";
 let giantArrowLevel = "0";
 let fireballLevel = "0";
 let shieldLevel = "0";
-let earthquakeOrder = "earthquake_spell";
-
-let defenseJSON = null;
-fetch("/json/defense.json")
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok ' + response.statusText);
-    }
-    return response.json();
-  })
-  .then(data => {   
-    defenseJSON = data;
-    if (!devMode) {
-      Object.keys(defenseJSON["defense"]).forEach(loadDefense);
-    }    
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-    //window.location.href = "/html/error.html";
-  });
-
-let offenseJSON = null;
-fetch("/json/offense.json")
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok ' + response.statusText);
-    }
-    return response.json();
-  })
-  .then(data => {   
-    offenseJSON = data;
-    Object.keys(offenseJSON["offense"]["spell"]).forEach(loadSpell);
-    Object.keys(offenseJSON["offense"]["equipment"]).forEach(loadEquipment);
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-    //window.location.href = "/html/error.html";
-  });
-
-  let otherJSON = null;
-  fetch("/json/other.json")
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {   
-      otherJSON = data;
-      maxSpellCount = otherJSON["max_spell_count"];
-      init();
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-      //window.location.href = "/html/error.html";
-    });
-
-function init() {
-  calculate();
-  setThemeMode(isDarkMode);
+let earthquakeOrder = localStorage.getItem(earthquakeOrderKey); 
+if (earthquakeOrder !== "earthquake_spell" && earthquakeOrder !== "earthquake_boots") {
+  earthquakeOrder = "earthquake_spell";
+  localStorage.setItem(earthquakeOrderKey, earthquakeOrder);
 }
+let useDonatedLightning = localStorage.getItem(useDonatedZapSpellKey) === "true";
+localStorage.setItem(useDonatedZapSpellKey, useDonatedLightning);
+
+document.addEventListener('init', () => {
+  if (!devMode) {
+    Object.keys(getAllDefenses()).forEach(loadDefense);
+  }
+  
+  Object.keys(getAllSpells()).forEach(loadSpell);
+  Object.keys(getAllEquipments()).forEach(loadEquipment);
+  updateEquipmentUsed();
+
+  maxSpellCount = otherJSON["max_spell_count"];
+
+  const earthquakeOrderSelect = document.getElementById("earthquakeOrder");
+  for (let option of earthquakeOrderSelect.options) {
+    if (option.value === earthquakeOrder) {
+       option.selected = true;
+       break;
+    } 
+  }
+
+  const donateCount = document.getElementById("donateCount");
+  donateCount.value = donatedLightningSpellCount;
+
+  const checkbox = document.getElementById("useDonatedLightning");
+  checkbox.checked = useDonatedLightning;
+  toggleUseDonatedLightningSpell();
+  calculate();
+
+  setThemeMode(isDarkMode);
+});
 
 function loadSpell(spellID) {
   offenseDivs = offensesSection.querySelectorAll(".offense");
 
   offenseDivs.forEach((offenseDiv) => {
     if (offenseDiv.getAttribute("data-title") === spellID) {
-      let level = offenseJSON["offense"]["spell"][spellID]["damage"].length;
       let imagePath = "/images/offense/" + spellID + ".webp";
+      const maxLevel = getSpell(spellID)["damage"].length;
+
+      let key;
+      if (offenseDiv.getAttribute("data-donated") === "true") {
+        key = simpleCalculatorKey + spellID + "_donated";
+      } else {
+        key = simpleCalculatorKey + spellID;        
+      }
+      let level = Number.parseInt(localStorage.getItem(key));
+      if (Number.isNaN(level)) {
+        level = maxLevel;
+        localStorage.setItem(key, level);
+      }
 
       offenseDiv.querySelector(".overlay").classList.add("maxed");
       offenseDiv.querySelector(".level-number").textContent = level;
       offenseDiv.querySelector(".image").src = imagePath;
-      offenseDiv.querySelector(".range").max = level;
+      offenseDiv.querySelector(".range").max = maxLevel;
       offenseDiv.querySelector(".range").value = level;
+      const overlayDiv = offenseDiv.querySelector(".overlay");
+      if (level == maxLevel) {            
+        overlayDiv.classList.remove("not-maxed");
+        overlayDiv.classList.add("maxed");
+      } else {
+        overlayDiv.classList.remove("maxed");
+        overlayDiv.classList.add("not-maxed");
+      }
 
       switch(spellID) {
         case "lightning_spell":
-          lightningSpellLevel = level;
-          donatedLightningSpellLevel = level;
+          if (offenseDiv.getAttribute("data-donated") === "true") {
+            donatedLightningSpellLevel = level;
+          } else {
+            lightningSpellLevel = level;    
+          }
           break;
         case "earthquake_spell":
           earthquakeSpellLevel = level;
@@ -112,23 +119,48 @@ function loadEquipment(equipmentID) {
     if (offenseDiv.getAttribute("data-title") === equipmentID) {    
       const damageList = offenseJSON["offense"]["equipment"][equipmentID]["damage"];
       const sorteddamageList = Object.entries(damageList).sort(([, valueA], [, valueB]) => valueA - valueB);
-      let level = sorteddamageList.length;
       let imagePath = "/images/offense/" + equipmentID + ".webp";
+      const maxLevel = sorteddamageList.length - 1;
+
+      const key = simpleCalculatorKey + equipmentID;
+      let level = Number.parseInt(localStorage.getItem(key));     
+      if (Number.isNaN(level)) {
+        level = 0;
+        localStorage.setItem(key, level);
+      }
 
       offenseDiv.querySelector(".overlay").classList.add("not-maxed");
-      offenseDiv.querySelector(".level-number").textContent = sorteddamageList[0][0];
+      offenseDiv.querySelector(".level-number").textContent = sorteddamageList[level][0];
       offenseDiv.querySelector(".image").src = imagePath;
-      offenseDiv.querySelector(".range").max = level;
-      offenseDiv.querySelector(".range").value = 0;
+      offenseDiv.querySelector(".range").max = maxLevel;
+      offenseDiv.querySelector(".range").value = level ;
+      const overlayDiv = offenseDiv.querySelector(".overlay");
+      if (level == maxLevel) {            
+        overlayDiv.classList.remove("not-maxed");
+        overlayDiv.classList.add("maxed");
+      } else {
+        overlayDiv.classList.remove("maxed");
+        overlayDiv.classList.add("not-maxed");
+      }
+
+      updateEquipment(equipmentID, level);
       return;
     }
   });
 }
 
 function loadDefense(defenseID) {
-  let name = defenseJSON["defense"][defenseID]["name"];
-  let level = defenseJSON["defense"][defenseID]["hp"].length;
-  let hp = defenseJSON["defense"][defenseID]["hp"][level - 1];
+  const name = getDefense(defenseID)["name"];
+  const maxLevel = getDefense(defenseID)["hp"].length;
+
+  const key = simpleCalculatorKey + defenseID;
+  let level = Number.parseInt(localStorage.getItem(key));
+  if (Number.isNaN(level)) {
+    level = maxLevel;
+    localStorage.setItem(key, level);
+  }
+
+  const hp = defenseJSON["defense"][defenseID]["hp"][level - 1];
   let imagePath;
   switch (defenseID) {
     case "grand_warden_altar":
@@ -172,21 +204,42 @@ function loadDefense(defenseID) {
   nameSpan.className = 'name';
   nameSpan.textContent = name + " ";
 
-  const levelSpan = document.createElement('span');
-  levelSpan.className = 'level';
-  levelSpan.textContent = "(Level " + level + ")";
+  const statDiv = document.createElement('div');
+  statDiv.className = "d-flex";
 
   const hpDiv = document.createElement('div');
-  hpDiv.textContent = '❤️';
+  hpDiv.className = 'h5 me-4';
 
-  const hpSpan = document.createElement('span');
-  hpSpan.className = 'hp h5';
-  hpSpan.textContent = hp;
+  const hpIcon = document.createElement('span');
+  hpIcon.className = 'me-2';
+  hpIcon.textContent = "❤️";
+  hpDiv.appendChild(hpIcon);
+
+  const hpNumber = document.createElement('span');
+  hpNumber.className = 'hp';
+  hpNumber.textContent = hp;
+  hpDiv.appendChild(hpNumber);
+  
+  const levelDiv = document.createElement('div');
+  levelDiv.className = 'h5';
+
+  const i = document.createElement('i');
+  i.className = 'fa-solid fa-chart-simple me-2';
+  levelDiv.appendChild(i);
+  
+  const levelNumberSpan = document.createElement('span');
+  levelNumberSpan.textContent = level;
+  if (level == maxLevel) {
+    levelNumberSpan.className = 'level maxed-text';
+  } else {
+    levelNumberSpan.className = 'level';
+  }
+  levelDiv.appendChild(levelNumberSpan);
 
   const rangeInput = document.createElement('input');
   rangeInput.setAttribute('type', 'range');
   rangeInput.setAttribute('min', '1');
-  rangeInput.setAttribute('max', level);
+  rangeInput.setAttribute('max', maxLevel);
   rangeInput.setAttribute('value', level);
   rangeInput.className = 'range w-100';
   rangeInput.setAttribute('oninput', 'updateDefense(this)');
@@ -259,12 +312,12 @@ function loadDefense(defenseID) {
   imgDiv.appendChild(img);
 
   nameDiv.appendChild(nameSpan);
-  nameDiv.appendChild(levelSpan);
 
-  hpDiv.appendChild(hpSpan);
+  statDiv.appendChild(hpDiv);
+  statDiv.appendChild(levelDiv);
 
   textDiv.appendChild(nameDiv);
-  textDiv.appendChild(hpDiv);
+  textDiv.appendChild(statDiv);
 
   titleDiv.appendChild(imgDiv);
   titleDiv.appendChild(textDiv);
