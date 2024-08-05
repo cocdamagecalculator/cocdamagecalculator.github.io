@@ -245,7 +245,7 @@ function loadDefense(defenseID) {
   buttonDiv.className = 'collapse-btn text-center my-3';
 
   const button = document.createElement('button');
-  button.className = 'btn btn-primary';
+  button.className = 'btn show-more-button';
   button.setAttribute('type', 'button');
   button.setAttribute('data-bs-toggle', 'collapse');
   button.setAttribute('data-bs-target', '#showMore-' + defenseID);

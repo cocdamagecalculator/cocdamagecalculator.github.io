@@ -162,6 +162,17 @@
     background: none;
 }
 
+.show-more-button {
+    background-color: hsl(215, 14%, 34%);
+    color: hsl(0, 0%, 100%);
+    font-weight: bold;
+}
+
+.show-more-button:hover {
+    background-color: hsl(215, 13%, 43%);
+    color: hsl(0, 0%, 100%);
+}
+
 /* Icon */
 .fa-solid.fa-moon.fa-2x {
     color: hsl(210, 2%, 75%);
