@@ -1,36 +1,34 @@
-/* Main & Navbar */
-main {   
-    background-color: hsl(220, 13%, 91%);
-}
-
+/* Main */
 .main-container {
     width: 90%;
 }
 
+/* Navbar */
 nav {
     font-size: 1.2em;
     text-align: center;
 }
 
 /* Search Bar */
-.form{
+.form {
     position: relative;
 }
 
-.form .fa-search{
+.form .fa-search {
     position: absolute;
     top:20px;
     left: 20px;
-    color: #9ca3af;
+    color: hsl(218, 11%, 65%);
 }
 
-.form-input{
+.form-input {
     height: 55px;
     text-indent: 33px;
     border-radius: 10px;
+    border: none;
 }
 
-.form-input:focus{
+.form-input:focus {
     box-shadow: none;
     border:none;
 }
@@ -116,7 +114,7 @@ nav {
 }
 
 .rounded-border {
-    border: 1px solid hsl(0, 0%, 90%);
+
     border-radius: 20px;
 }
 
@@ -158,6 +156,12 @@ nav {
     z-index: 1;
 }
 
+#toggleDarkMode {
+    width: 50px;
+    border: none;
+    background: none;
+}
+
 /* Icon */
 .fa-solid.fa-moon.fa-2x {
     color: hsl(210, 2%, 75%);
@@ -173,4 +177,77 @@ nav {
 
 .fa-solid.fa-sun.fa-2x:hover {
     color: hsl(43, 100%, 50%);     
+}
+
+/* Range Slider */
+.range {
+    appearance: none; /* Standard */
+    -webkit-appearance: none; /* WebKit */
+    -moz-appearance: none; /* Firefox */
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.range::-webkit-slider-runnable-track {
+    height: 15px;
+    border-radius: 16px;
+    background: hsl(0, 0%, 80%);
+}
+
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none; 
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 100%);
+    border: 2px solid hsl(215, 14%, 34%); 
+    box-shadow: -407px 0 0 400px hsl(215, 14%, 34%); 
+}
+
+.range::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 100%);
+    border: 2px solid hsl(215, 14%, 34%); 
+    box-shadow: -407px 0 0 400px hsl(215, 14%, 34%); 
+}
+
+.range::-moz-range-track {
+    height: 15px;
+    border-radius: 16px;
+    background: hsl(0, 0%, 80%);
+}
+
+.range::-ms-track {
+    height: 15px;
+    border-radius: 16px;
+    background: hsl(0, 0%, 80%);
+    border-color: transparent;
+    color: transparent;
+}
+
+.range::-ms-thumb {
+    -ms-appearance: none;
+    appearance: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 100%);
+    border: 2px solid hsl(215, 14%, 34%);
+    box-shadow: -407px 0 0 400px hsl(215, 14%, 34%);
+}
+
+.range::-ms-fill-lower {
+    background: hsl(215, 14%, 34%);
+    border-radius: 16px;
+}
+
+.range::-ms-fill-upper {
+    background: hsl(0, 0%, 80%);
+    border-radius: 16px;
 }

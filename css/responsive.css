@@ -1,3 +1,24 @@
+@media only screen and (max-device-width: 992px) {
+    .navbar-brand {
+        order: 1;
+    }
+
+    .navbar-toggler {
+        margin-left: auto;
+        order: 2;
+    }
+
+    #toggleDarkMode {
+        margin-left: 10px;
+        order: 3;
+    }
+
+    .navbar-collapse {
+        margin-left: auto;
+        order: 4;
+    }
+}
+
 @media only screen and (max-device-width: 768px) {
     .offense {
         width: auto;

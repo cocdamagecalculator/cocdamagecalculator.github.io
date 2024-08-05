@@ -1,0 +1,16 @@
+body {
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(215, 28%, 17%);
+}
+
+main {   
+    background-color: hsl(220, 13%, 91%);   
+}
+
+.navbar-bg {
+    background-color: hsl(0, 0%, 100%);
+}
+
+.card-background {
+    background-color: hsl(0, 0%, 100%); 
+}

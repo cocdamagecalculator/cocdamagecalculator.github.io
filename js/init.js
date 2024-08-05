@@ -169,10 +169,7 @@ function loadDefense(defenseID) {
 
   // Create the nested structure inside the main container
   const borderDiv = document.createElement('div');
-  borderDiv.className = 'col-12 h-100 rounded-border shadow bg-white';
-
-  const innerDiv = document.createElement('div');
-  innerDiv.className = 'm-3';
+  borderDiv.className = 'p-3 col-12 h-100 rounded-border shadow card-background';
 
   const titleDiv = document.createElement('div');
   titleDiv.className = 'd-flex';
@@ -291,11 +288,9 @@ function loadDefense(defenseID) {
   titleDiv.appendChild(imgDiv);
   titleDiv.appendChild(textDiv);
 
-  innerDiv.appendChild(titleDiv);
-  innerDiv.appendChild(rangeInput);
-  innerDiv.appendChild(resultDiv);
-
-  borderDiv.appendChild(innerDiv);
+  borderDiv.appendChild(titleDiv);
+  borderDiv.appendChild(rangeInput);
+  borderDiv.appendChild(resultDiv);
 
   defenseDiv.appendChild(borderDiv);
 
