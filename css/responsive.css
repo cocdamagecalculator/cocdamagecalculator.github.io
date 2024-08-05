@@ -17,6 +17,10 @@
         margin-left: auto;
         order: 4;
     }
+
+    .dropdown-menu {
+        text-align: center;
+    }
 }
 
 @media only screen and (max-device-width: 768px) {
