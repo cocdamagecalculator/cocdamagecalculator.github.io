@@ -86,8 +86,9 @@ function calculateDefense(defenseDiv, equipmentDamage) {
                 nodeArray.push(createSpellDiv("earthquake_spell", earthquakeSpellLevel, maxEQSpellCount, false, isSpellMaxed("earthquake_spell", earthquakeSpellLevel)));
             }
             
+            let donatedZapSpellNeeded = 0;
             if (hp > 0 && donatedLightningSpellCount > 0 && !immuneList.includes("lightning_spell")) {
-                let donatedZapSpellNeeded = Math.ceil(hp / donatedZapSpellDamage);
+                donatedZapSpellNeeded = Math.ceil(hp / donatedZapSpellDamage);
 
                 if (donatedZapSpellNeeded > donatedLightningSpellCount) {
                     donatedZapSpellNeeded = donatedLightningSpellCount;
@@ -111,8 +112,29 @@ function calculateDefense(defenseDiv, equipmentDamage) {
             if (spellCount <= maxSpellCount && hp <= 0) {
                 nodeArray.reverse();
                 const amountDiv = document.createElement('div');
-                amountDiv.className = "h5";
-                amountDiv.textContent = "(" + spellCount + "/" + maxSpellCount + ")";
+
+                const normalDiv = document.createElement('div');
+                normalDiv.className = "fs-5 fw-bold";
+                normalDiv.textContent = "(" + spellCount + "/" + maxSpellCount + ")";
+                amountDiv.appendChild(normalDiv);
+
+                if (donatedZapSpellNeeded > 0) {
+                    const donateDiv = document.createElement('div');
+                    donateDiv.className = "d-flex align-items-center";      
+
+                    const donateAmountDiv = document.createElement('span');
+                    donateAmountDiv.className = "fs-5 fw-bold me-1 mb-1px";
+                    donateAmountDiv.textContent = "+" + donatedZapSpellNeeded;
+
+                    const donateIcon = document.createElement('img');
+                    donateIcon.className = 'image';
+                    donateIcon.setAttribute('height', '18');
+                    donateIcon.setAttribute('src', "/images/other/donate.webp");
+
+                    donateDiv.appendChild(donateAmountDiv);
+                    donateDiv.appendChild(donateIcon);
+                    amountDiv.appendChild(donateDiv);
+                }
                 nodeArray.push(amountDiv);
 
                 if (isMainDisplay) {

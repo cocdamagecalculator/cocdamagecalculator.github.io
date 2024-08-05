@@ -1,5 +1,4 @@
 const devMode = false;
-let isDarkMode = false;
 
 const defensesSection = document.getElementById("defenses");
 const offensesSection = document.getElementById("offenses");
@@ -66,12 +65,17 @@ fetch("/json/offense.json")
     .then(data => {   
       otherJSON = data;
       maxSpellCount = otherJSON["max_spell_count"];
-      calculate();
+      init();
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
       //window.location.href = "/html/error.html";
     });
+
+function init() {
+  calculate();
+  setThemeMode(isDarkMode);
+}
 
 function loadSpell(spellID) {
   offenseDivs = offensesSection.querySelectorAll(".offense");
@@ -122,29 +126,6 @@ function loadEquipment(equipmentID) {
 }
 
 function loadDefense(defenseID) {
-  // Template:
-  // <div data-title="mortar" class="defense col-xxl-3 col-lg-4 col-md-6">
-  //   <div class="col-12 border">
-  //       <div class="m-3">
-  //           <div class="d-flex">
-  //               <div>
-  //                   <img class="image" src="" height="60">
-  //               </div>
-  //               <div class="ms-3">
-  //                   <div class="h5">
-  //                       <span class="name"></span>
-  //                       <span class="level"></span>
-  //                   </div>                                
-  //                   <div>
-  //                       ❤️<span class="hp h5"></span>
-  //                   </div>
-  //               </div>
-  //           </div>
-  //           <input type="range" min="1" class="range w-100" onchange="update(this)">   
-  //       </div>  
-  //   </div>                
-  // </div>
-
   let name = defenseJSON["defense"][defenseID]["name"];
   let level = defenseJSON["defense"][defenseID]["hp"].length;
   let hp = defenseJSON["defense"][defenseID]["hp"][level - 1];
@@ -227,7 +208,7 @@ function loadDefense(defenseID) {
 
   const statusImg = document.createElement('img');
   statusImg.className = 'status-img me-4';
-  statusImg.setAttribute('height', '150');
+  statusImg.setAttribute('width', '80');
 
   const statusText = document.createElement('div');
   statusText.className = 'status-text fw-bold';
@@ -297,132 +278,3 @@ function loadDefense(defenseID) {
   // Append the main container to the body or a specific element in the HTML
   defensesSection.appendChild(defenseDiv);
 }
-
-/* <div class="mt-3">
-  <div>
-      <h5>Heroes Equipment used:</h5>
-      <div class="d-flex justify-content-center align-items-center flex-wrap">
-          <div class="image-container card-container text-center m-1">
-              <span class="level-number text-light">x2</span>
-              <img class="image" height="50" src="/images/offense/earthquake_boots.webp">
-              <div class="overlay overlay-card maxed">
-                  <span class="level-number">11</span>
-              </div>                                                              
-          </div>
-          <div class="image-container card-container text-center m-1 epic-rarity">
-              <span class="level-number text-light">x2</span>
-              <img class="image" height="50" src="/images/offense/spiky_ball.webp">
-              <div class="overlay overlay-card maxed">
-                  <span class="level-number">11-13</span>
-              </div>                                                              
-          </div>
-          <div class="image-container card-container text-center m-1">
-              <span class="level-number text-light">x2</span>
-              <img class="image" height="50" src="/images/offense/giant_arrow.webp">
-              <div class="overlay overlay-card maxed">
-                  <span class="level-number">11-13</span>
-              </div>                                                              
-          </div>
-          <div class="image-container card-container text-center m-1 epic-rarity">
-              <span class="level-number text-light">x2</span>
-              <img class="image" height="50" src="/images/offense/fireball.webp">
-              <div class="overlay overlay-card maxed">
-                  <span class="level-number">11-13</span>
-              </div>                                                              
-          </div>
-          <div class="image-container card-container text-center m-1">
-              <span class="level-number text-light">x2</span>
-              <img class="image" height="50" src="/images/offense/seeking_shield.webp">
-              <div class="overlay overlay-card maxed">
-                  <span class="level-number">11-13</span>
-              </div>                                                              
-          </div>
-      </div>
-  </div>
-  <div class="my-3">
-      <h5>Spell needed:</h5>
-      <div class="d-flex justify-content-center align-items-center">
-          <div class="image-container card-container text-center mx-1">
-              <span class="level-number text-light">x2</span>
-              <img class="image" height="50" src="/images/offense/lightning_spell.webp">
-              <div class="overlay overlay-card maxed">
-                  <span class="level-number">11</span>
-              </div>                                                              
-          </div>
-          <div class="image-container card-container text-center mx-1">
-              <span class="level-number text-light">x2</span>
-              <div class="donate-card-img">
-                  <img class="image" src="/images/other/donate.webp" width="18">
-              </div>
-              <img class="image" height="50" src="/images/offense/lightning_spell.webp">
-              <div class="overlay overlay-card maxed">
-                  <span class="level-number">11</span>
-              </div>                                                              
-          </div>
-          <div class="image-container card-container text-center mx-1">
-              <span class="level-number text-light">x2</span>
-              <img class="image earthquake-spell-bg" height="50" src="/images/offense/earthquake_spell.webp">
-              <div class="overlay overlay-card maxed">
-                  <span class="level-number">11-13</span>
-              </div>                                                              
-          </div>
-          <div class="h5">(3/14)</div>
-      </div>
-      <div class="text-center my-3">
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#showMore-cannon" aria-expanded="false" aria-controls="showMore-cannon">Show More</button>
-      </div>                            
-      <div class="collapse" id="showMore-cannon">
-          <div class="d-flex justify-content-center align-items-center">
-              <div class="image-container card-container text-center mx-1">
-                  <span class="level-number text-light">x2</span>
-                  <img class="image" height="50" src="/images/offense/lightning_spell.webp">
-                  <div class="overlay overlay-card maxed">
-                      <span class="level-number">11</span>
-                  </div>                                                              
-              </div>
-              <div class="image-container card-container text-center mx-1">
-                  <span class="level-number text-light">x2</span>
-                  <img class="image earthquake-spell-bg" height="50" src="/images/offense/earthquake_spell.webp">
-                  <div class="overlay overlay-card maxed">
-                      <span class="level-number">11-13</span>
-                  </div>                                                              
-              </div>
-              <div class="h5">(3/14)</div>
-          </div>
-          <div class="d-flex justify-content-center align-items-center my-3">
-              <div class="image-container card-container text-center mx-1">
-                  <span class="level-number text-light">x2</span>
-                  <img class="image" height="50" src="/images/offense/lightning_spell.webp">
-                  <div class="overlay overlay-card maxed">
-                      <span class="level-number">11</span>
-                  </div>                                                              
-              </div>
-              <div class="image-container card-container text-center mx-1">
-                  <span class="level-number text-light">x2</span>
-                  <img class="image earthquake-spell-bg" height="50" src="/images/offense/earthquake_spell.webp">
-                  <div class="overlay overlay-card maxed">
-                      <span class="level-number">11-13</span>
-                  </div>                                                              
-              </div>
-              <div class="h5">(3/14)</div>
-          </div>
-          <div class="d-flex justify-content-center align-items-center my-3">
-              <div class="image-container card-container text-center mx-1">
-                  <span class="level-number text-light">x2</span>
-                  <img class="image" height="50" src="/images/offense/lightning_spell.webp">
-                  <div class="overlay overlay-card maxed">
-                      <span class="level-number">11</span>
-                  </div>                                                              
-              </div>
-              <div class="image-container card-container text-center mx-1">
-                  <span class="level-number text-light">x2</span>
-                  <img class="image earthquake-spell-bg" height="50" src="/images/offense/earthquake_spell.webp">
-                  <div class="overlay overlay-card maxed">
-                      <span class="level-number">11-13</span>
-                  </div>                                                              
-              </div>
-              <div class="h5">(3/14)</div>
-          </div>
-      </div>  
-  </div>                     
-</div> */

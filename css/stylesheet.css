@@ -168,9 +168,18 @@
     font-weight: bold;
 }
 
+.show-more-button:active {
+    background-color: hsl(215, 13%, 50%);
+    color: hsl(0, 100%, 50%);
+}
+
 .show-more-button:hover {
     background-color: hsl(215, 13%, 43%);
     color: hsl(0, 0%, 100%);
+}
+
+.mb-10px {
+    margin-bottom: 1px;
 }
 
 /* Icon */
