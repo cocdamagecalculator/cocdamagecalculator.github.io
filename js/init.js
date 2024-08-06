@@ -192,7 +192,7 @@ function loadDefense(defenseID) {
   const img = document.createElement('img');
   img.className = 'image';
   img.setAttribute('src', imagePath);
-  img.setAttribute('height', '60');
+  img.setAttribute('width', '60');
 
   const textDiv = document.createElement('div');
   textDiv.className = 'ms-3';
