@@ -1,4 +1,4 @@
-/* Main */
+/* Page Structure */
 main {
     padding-top: 100px;
 }
@@ -41,7 +41,6 @@ main {
 }
 
 .form-select, .count-box  {
-    background-color: hsl(215, 14%, 34%);
     color: hsl(0, 0%, 100%); 
 }
 

@@ -1,13 +1,13 @@
 body {
-    background-color: hsl(215, 28%, 17%);
+    background-color: hsl(215, 14%, 34%);  
     color: hsl(0, 0%, 100%);
 }
 
-main {   
-    background-color: hsl(215, 14%, 34%);   
+.navbar-bg {
+    background-color: hsl(215, 28%, 17%);
 }
 
-.navbar-bg {
+footer {
     background-color: hsl(215, 28%, 17%);
 }
 
@@ -35,4 +35,12 @@ main {
 
 .fa-solid.fa-gear:hover {
     color: hsl(0, 0%, 100%);
+}
+
+.status-success {
+    color: hsl(113, 100%, 50%);
+}
+
+.status-fail {
+    color: hsl(0, 100%, 50%);
 }

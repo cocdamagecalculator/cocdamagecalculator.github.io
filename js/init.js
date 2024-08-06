@@ -57,8 +57,6 @@ document.addEventListener('init', () => {
   checkbox.checked = useDonatedLightning;
   toggleUseDonatedLightningSpell();
   calculate();
-
-  setThemeMode(isDarkMode);
 });
 
 function loadSpell(spellID) {

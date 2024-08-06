@@ -6,7 +6,7 @@ const navbar = document.getElementById("navbar");
 function toggleDarkMode() {
     isDarkMode = !isDarkMode;
     localStorage.setItem("isDarkMode", isDarkMode);
-
+    console.log(navbar);
     setThemeMode(isDarkMode);
 }
 
@@ -33,3 +33,5 @@ function darkMode() {
     themeStyleSheet.setAttribute('href', darkStyleSheet);
     navbar.setAttribute("data-bs-theme", "dark");
 }
+
+setThemeMode(isDarkMode);

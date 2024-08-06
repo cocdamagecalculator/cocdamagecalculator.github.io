@@ -34,7 +34,7 @@
                         </ul>
                     </li>
                     <li class="nav-item d-sm-none">
-                        <a class="nav-link" aria-current="page" href="/html/setting.html">Setting</a>
+                        <a class="nav-link active" aria-current="page" href="/html/setting.html">Setting</a>
                     </li>
                 </ul>
             </div>
@@ -54,6 +54,42 @@
     </nav>
 
     <main class="container-fluid pb-5">
+        <header class="text-center">
+            <h1>Setting</h1>
+            <h3 id="status" class="d-none"></h3>
+        </header>
+        <section class="main-container mx-auto mt-5">
+            <section class="p-4 rounded-border shadow card-background">
+                <h2 class="text-center">General</h2><hr>
+                <div>
+                    <div class="d-sm-flex align-items-center">
+                        <div class="me-sm-5 h3">Clear local storage</div>
+                        <div>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#clearLocalStorage">Clear</button>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade text-black" id="clearLocalStorage" tabindex="-1" aria-labelledby="clearLocalStorageLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="clearLocalStorageLabel">Clear local storage?</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">Are you sure you want to clear local storage?</div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="clearLocalStorage()">Clear</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fs-5">Clear your local storage on this website. This includes theme preferences and your options in the calculator.</div>
+            </section>
+        </section>
     </main>
 
     <footer class="p-5 text-center mt-auto">
@@ -67,5 +103,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/js/toggleDarkMode.js"></script>
+    <script src="/js/setting/setting.js"></script>
 </body>
 </html>
