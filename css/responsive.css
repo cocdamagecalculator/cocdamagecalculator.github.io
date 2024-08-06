@@ -1,21 +1,15 @@
-@media only screen and (max-device-width: 992px) {
+@media only screen and (max-width: 992px) {
     .navbar-brand {
         order: 1;
     }
 
-    .navbar-toggler {
-        margin-left: auto;
+    .navbar-toggler, .setting, #toggleDarkMode {
         order: 2;
-    }
-
-    #toggleDarkMode {
-        margin-left: 10px;
-        order: 3;
     }
 
     .navbar-collapse {
         margin-left: auto;
-        order: 4;
+        order: 3;
     }
 
     .dropdown-menu {
@@ -23,7 +17,7 @@
     }
 }
 
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-width: 768px) {
     .offense {
         width: auto;
     }
@@ -41,7 +35,7 @@
     }
 }
 
-@media only screen and (max-device-width: 576px) {
+@media only screen and (max-width: 576px) {
     .navbar-brand {
         font-size: 0.9em;
     }

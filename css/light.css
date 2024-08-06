@@ -24,3 +24,11 @@ main {
     background-color: hsl(215, 14%, 34%);
     color: hsl(0, 0%, 100%);
 }
+
+.fa-solid.fa-gear {
+    color: hsl(0, 0%, 25%);
+}
+
+.fa-solid.fa-gear:hover {
+    color: hsl(0, 0%, 60%);
+}

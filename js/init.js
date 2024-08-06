@@ -185,7 +185,7 @@ function loadDefense(defenseID) {
   borderDiv.className = 'p-3 col-12 h-100 rounded-border shadow card-background';
 
   const titleDiv = document.createElement('div');
-  titleDiv.className = 'd-flex';
+  titleDiv.className = 'd-flex align-items-center';
 
   const imgDiv = document.createElement('div');
 
@@ -205,10 +205,10 @@ function loadDefense(defenseID) {
   nameSpan.textContent = name + " ";
 
   const statDiv = document.createElement('div');
-  statDiv.className = "d-flex";
+  statDiv.className = "d-flex flex-wrap";
 
   const hpDiv = document.createElement('div');
-  hpDiv.className = 'h5 me-4';
+  hpDiv.className = 'fw-bold fs-5 me-4 stat-tag mb-2';
 
   const hpIcon = document.createElement('span');
   hpIcon.className = 'me-2';
@@ -221,7 +221,7 @@ function loadDefense(defenseID) {
   hpDiv.appendChild(hpNumber);
   
   const levelDiv = document.createElement('div');
-  levelDiv.className = 'h5';
+  levelDiv.className = 'fw-bold fs-5 stat-tag mb-2';
 
   const i = document.createElement('i');
   i.className = 'fa-solid fa-chart-simple me-2';
@@ -279,7 +279,7 @@ function loadDefense(defenseID) {
   buttonDiv.className = 'collapse-btn text-center my-3';
 
   const button = document.createElement('button');
-  button.className = 'btn show-more-button';
+  button.className = 'show-more-button btn btn-secondary fw-bold';
   button.setAttribute('type', 'button');
   button.setAttribute('data-bs-toggle', 'collapse');
   button.setAttribute('data-bs-target', '#showMore-' + defenseID);

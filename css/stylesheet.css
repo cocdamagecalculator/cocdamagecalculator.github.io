@@ -1,5 +1,9 @@
 /* Main */
-.main-container {
+main {
+    padding-top: 100px;
+}
+
+.main-container {    
     width: 90%;
 }
 
@@ -179,39 +183,34 @@
 }
 
 .show-more-button {
-    background-color: hsl(215, 14%, 34%);
-    color: hsl(0, 0%, 100%);
-    font-weight: bold;
-}
-
-.show-more-button:active {
-    background-color: hsl(215, 13%, 50%);
-    color: hsl(0, 100%, 50%);
-}
-
-.show-more-button:hover {
-    background-color: hsl(215, 13%, 43%);
-    color: hsl(0, 0%, 100%);
+    border: none;
 }
 
 .mb-10px {
     margin-bottom: 1px;
 }
 
-/* Icon */
-.fa-solid.fa-moon.fa-2x {
-    color: hsl(210, 2%, 75%);
+.stat-tag {
+    border-radius: 5px;
+    background-color: hsl(215, 13%, 43%);
+    color: hsl(0, 0%, 100%);
+    padding: 1px 10px;
 }
 
-.fa-solid.fa-moon.fa-2x:hover {
+/* Icon */
+.fa-solid.fa-moon {
     color: hsl(0, 0%, 25%);
 }
 
-.fa-solid.fa-sun.fa-2x {
+.fa-solid.fa-moon:hover {
+    color: hsl(0, 0%, 60%);
+}
+
+.fa-solid.fa-sun {
     color: hsl(210, 2%, 75%);     
 }
 
-.fa-solid.fa-sun.fa-2x:hover {
+.fa-solid.fa-sun:hover {
     color: hsl(43, 100%, 50%);     
 }
 
@@ -290,4 +289,17 @@
 .range::-ms-fill-upper {
     background: hsl(0, 0%, 80%);
     border-radius: 16px;
+}
+
+/* Button */
+#scrollUpBtn {
+    width: 50px;
+    height: 50px;
+    bottom: 15%;
+    right: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+#scrollUpBtn i {
+    color: hsl(0, 0%, 100%);
 }
