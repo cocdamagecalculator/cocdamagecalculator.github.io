@@ -31,19 +31,11 @@ main {
 .brand-text {  
     font-family: SupercellMagic;   
     color: white;
-    text-shadow: 3px 3px hsl(0, 0%, 0%), 
-        -3px 3px hsl(0, 0%, 0%), 
-        3px -3px hsl(0, 0%, 0%), 
-        -3px -3px hsl(0, 0%, 0%);
 }
 
 .navbar-text {
     text-align: start;
     font-size: 0.7em;
-    text-shadow: 2px 2px hsl(0, 0%, 0%), 
-        -2px 2px hsl(0, 0%, 0%), 
-        2px -2px hsl(0, 0%, 0%), 
-        -2px -2px hsl(0, 0%, 0%);
 }
 
 /* Search Bar */
