@@ -1,4 +1,9 @@
 /* Page Structure */
+@font-face {
+    font-family: SupercellMagic;
+    src: url(/fonts/SVN-SupercellMagic.otf);
+}
+
 main {
     padding-top: 100px;
 }
@@ -11,6 +16,27 @@ main {
 .navbar {
     font-size: 1.2em;
     text-align: center;
+}
+
+.brand-logo {
+    background-color: rgb(191, 0, 255);
+    border-radius: 10px;
+    padding: 5px; 
+}
+
+.brand-logo img {
+    width: 30px;
+}
+
+.brand-text {
+    text-align: start;
+    font-family: SupercellMagic;
+    font-size: 0.7em;
+    color: white;
+    text-shadow: 2px 2px hsl(0, 0%, 0%), 
+        -2px 2px hsl(0, 0%, 0%), 
+        2px -2px hsl(0, 0%, 0%), 
+        -2px -2px hsl(0, 0%, 0%);
 }
 
 /* Search Bar */
@@ -194,6 +220,10 @@ main {
     background-color: hsl(215, 13%, 43%);
     color: hsl(0, 0%, 100%);
     padding: 1px 10px;
+}
+
+.text-orange {
+    color: hsl(26, 100%, 50%);
 }
 
 /* Icon */

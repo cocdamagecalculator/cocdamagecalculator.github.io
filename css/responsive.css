@@ -8,7 +8,6 @@
     }
 
     .navbar-collapse {
-        margin-left: auto;
         order: 3;
     }
 
@@ -36,7 +35,11 @@
 }
 
 @media only screen and (max-width: 576px) {
-    .navbar-brand {
-        font-size: 0.9em;
+    .brand-logo img {
+        width: 30px;
+    }
+    
+    .brand-text {
+        font-size: 0.6em;
     }
 }

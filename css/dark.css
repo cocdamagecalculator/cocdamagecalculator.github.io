@@ -44,3 +44,7 @@ footer {
 .status-fail {
     color: hsl(0, 100%, 50%);
 }
+
+.brand-text {
+    text-shadow: none;
+}
