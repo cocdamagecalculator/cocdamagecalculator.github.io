@@ -46,5 +46,12 @@ footer {
 }
 
 .brand-text {
+    text-shadow: 3px 3px 10px hsl(0, 0%, 30%), 
+        -3px 3px 10px hsl(0, 0%, 30%), 
+        3px -3px 10px hsl(0, 0%, 30%), 
+        -3px -3px 10px hsl(0, 0%, 30%);
+}
+
+.navbar-text {
     text-shadow: none;
 }
