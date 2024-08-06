@@ -28,6 +28,8 @@ function getEquipmentDamage() {
 
 function calculateDefense(defenseDiv, equipmentDamage) {
     const defenseID = defenseDiv.getAttribute("data-title");
+    const showMoreButton = defenseDiv.querySelector(".show-more-button");
+    showMoreButton.textContent = "Show More";
     const collapseDiv = defenseDiv.querySelector(".collapse");
     const collapse = new bootstrap.Collapse(collapseDiv, {
         toggle: false

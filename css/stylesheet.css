@@ -12,6 +12,10 @@ main {
     width: 90%;
 }
 
+.content {
+    font-size: 1.2em;
+}
+
 /* Navbar */
 .navbar {
     font-size: 1.2em;
@@ -335,5 +339,21 @@ main {
 }
 
 #scrollUpBtn i {
+    color: hsl(0, 0%, 100%);
+}
+
+.donate-button {
+    background-color: hsl(149, 78%, 40%);
+    border: none;
+}
+
+.reddit {
+    background-color: hsl(28, 100%, 50%);
+    color: hsl(0, 0%, 100%);
+    border: none;
+}
+
+.reddit:hover {
+    background-color: hsl(28, 100%, 35%);
     color: hsl(0, 0%, 100%);
 }

@@ -284,6 +284,7 @@ function loadDefense(defenseID) {
   button.setAttribute('aria-expanded', 'false');
   button.setAttribute('aria-controls', 'showMore-' + defenseID);
   button.textContent = 'Show More';
+  button.setAttribute('onclick', "toggleCollapseText(this)");
 
   const showMoreDiv = document.createElement('div');
   showMoreDiv.className = 'spell-display collapse';

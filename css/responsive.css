@@ -42,4 +42,8 @@
     .navbar-text {
         font-size: 0.6em;
     }
+
+    .content {
+        font-size: 1em;
+    }
 }
